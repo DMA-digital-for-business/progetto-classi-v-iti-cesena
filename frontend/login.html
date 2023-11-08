@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button type="button" id="btn-submit">Login with example user</button>
+
+<div id="firebaseui-auth-container"></div>
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js'
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+
+        document.getElementById("btn-submit").addEventListener("click", () => {
+
+            // Import the functions you need from the SDKs you need
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyDk2TKj9q5AahQnN4Od_MQeIkL7XMXvXMY",
+                authDomain: "progetto-classi-v-iti-cesena.firebaseapp.com",
+                projectId: "progetto-classi-v-iti-cesena",
+                storageBucket: "progetto-classi-v-iti-cesena.appspot.com",
+                messagingSenderId: "200987852890",
+                appId: "1:200987852890:web:ec4957871feaabc651d863"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+            const email = "simone.sanfilippo@diemmea.com"
+            const password = "progetto-classi-v-iti-cesena-admin"
+
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+        })
+</script>
+</body>
+</html>
