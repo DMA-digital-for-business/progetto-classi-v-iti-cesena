@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  gateway:
+    build:
+      dockerfile: infrastructure/prod/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./gateway
+    ports:
+      - '3000:3000'
+    networks:
+      - backend
+
+  be-posts:
+    build:
+      dockerfile: infrastructure/prod/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./backend/posts
+    networks:
+      - backend
+
+networks:
+  backend:

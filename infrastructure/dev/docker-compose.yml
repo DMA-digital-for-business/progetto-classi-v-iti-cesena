@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  gateway:
+    build:
+      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./gateway
+    volumes:
+      - ../../gateway:/usr/src/server
+    ports:
+      - '3000:3000'
+    networks:
+      - backend
+
+  be-posts:
+    build:
+      dockerfile: infrastructure/dev/dockerfiles/std.node.Dockerfile
+      context: ../..
+      args:
+        SERVICE_PATH: ./backend/posts
+    volumes:
+      - ../../backend/posts:/usr/src/server
+    networks:
+      - backend
+      - db-posts
+
+  db-posts:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: pgposts
+      POSTGRES_PASSWORD: PgPwd23!
+    networks:
+      - db-posts
+
+networks:
+  backend:
+  db-posts:

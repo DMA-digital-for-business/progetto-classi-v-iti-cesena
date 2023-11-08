@@ -1,0 +1,7 @@
+[
+  {
+    "prefix": "posts",
+    "domain": "be-posts",
+    "port": 3000
+  }
+]

@@ -1,0 +1,3 @@
+**/node_modules
+**/.idea
+**/gateway/src/config/firebase_service_account.json
